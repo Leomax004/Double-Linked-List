@@ -14,6 +14,7 @@ void insertElementatLocation();
 void printDoubleLinkList();
 void deleteElement();
 void reverseDoubleLinkList();
+void searchElement();
 
 
 typedef struct Node
@@ -39,7 +40,7 @@ int main()
         printf("Enter 5 for print all the elements in Linklist\n");
         printf("Enter 6 for reverse the linklist\n");
         printf("Enter 7 for print the linklist using recusion\n");
-        printf("Enter 8 for reverse the linklist using recursion\n");
+        printf("Enter 8 for search the element in Double Linked-List\n");
         printf("Enter 9 for exit\n");
         
         int option;
@@ -93,7 +94,7 @@ void doubleLinkList(int option)
             break;
             
         case 8:
-            
+            searchElement();
             break;
             
         case 9:
@@ -335,6 +336,44 @@ void printLinkListUsingRecursion(Node *ptr)
     
     printf("%d",ptr->data);
     printLinkListUsingRecursion(ptr->next);
+}
+
+void searchElement()
+{
+    int variable;
+    printf("Enter the element");
+    scanf("%d",&variable);
+    
+    Node *start,*last;
+    start = Head;
+    
+    while (start->next != NULL)
+    {
+        start = start->next;
+    }
+    last = start;
+    start = Head;
+    
+    _Bool isElementinList = 0;
+    while (start->next != NULL && last->prev != Head)
+    {
+        
+        if(start->data == variable || last->data == variable)
+        {
+            printf("Element found in the list\n");
+            isElementinList = 1;
+            break;
+        }
+        
+        start = start->next;
+        last = last->prev;
+    }
+    
+    if(!isElementinList)
+    {
+        printf("Element is not in list\n");
+    }
+    
 }
 
 
